@@ -1,0 +1,9 @@
+allowBuilds:
+  '@swc/core': false
+  cbor-extract: false
+  esbuild: false
+  sharp: false
+
+ignoredOptionalDependencies:
+  - "@mongodb-js/zstd"
+  - "node-liblzma"

@@ -12,8 +12,8 @@ Produce **auditable** product recommendations. Every idea should be traceable to
 Issue these four calls in a single turn:
 
 - `researcher` subagent with `message`: *"Investigate Vercel announcements, product launches, and developer-facing news from roughly the last 60 days. Be sure to compute the current date and don't rely on your memory. Ship It Shop sells t-shirts, hoodies, mugs, hats, stationery, and tech accessories. Identify Vercel themes, product names, or moments that could inspire new swag designs. Return a short brief with the most promotable themes and concrete naming hooks, with sources."*
-- `sales_totals_by_product` with `from` set to 30 days ago
-- `list_historical_returns` with `from` set to 30 days ago
+- `sales_totals_by_product` with `lastDays: 30`
+- `list_historical_returns` with `lastDays: 30`
 - `list_products` with no filters
 
 ## Step 2: Apply noise floors
