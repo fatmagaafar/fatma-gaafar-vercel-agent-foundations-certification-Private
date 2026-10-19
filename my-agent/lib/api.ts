@@ -17,6 +17,23 @@ async function apiGet(path: string, params?: Params) {
   return res.json();
 }
 
+// The model does not know today's date, so resolve relative ranges here and drop malformed dates.
+export function resolveRange<T extends { from?: string; to?: string }>(
+  input: T & { lastDays?: number },
+): T {
+  const { lastDays, ...rest } = input;
+  const valid = (d?: string) => !!d && !Number.isNaN(Date.parse(d));
+  const out = { ...rest } as T;
+  if (!valid(out.from)) delete out.from;
+  if (!valid(out.to)) delete out.to;
+  if (lastDays) {
+    out.from = new Date(Date.now() - lastDays * 86_400_000)
+      .toISOString()
+      .slice(0, 10);
+  }
+  return out;
+}
+
 const endpoint =
   <T extends Params>(path: string) =>
   (params?: T) =>
